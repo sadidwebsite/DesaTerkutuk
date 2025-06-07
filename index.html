@@ -153,10 +153,11 @@
             <div class="container">
                 <h2>Kontak Kami</h2>
                 <p>Ada pertanyaan atau masukan? Jangan ragu untuk menghubungi kami.</p>
-                <form class="contact-form">
-                    <input type="text" placeholder="Nama Anda" required>
-                    <input type="email" placeholder="Email Anda" required>
-                    <textarea placeholder="Pesan Anda" rows="5" required></textarea>
+                <form class="contact-form" action="https://formsubmit.co/sadidstudios@gmail.com" method="POST">
+                    <input type="text" placeholder="Nama Anda" name="name" required>
+                    <input type="email" placeholder="Email Anda" name="email" required>
+                    <textarea placeholder="Pesan Anda" rows="5" name="message" required></textarea>
+                    <input type="hidden" name="_next" value="https://sadidstudios.github.io/desa-terkutuk/terimakasih.html">
                     <button type="submit" class="btn primary-btn">Kirim Pesan</button>
                 </form>
             </div>
