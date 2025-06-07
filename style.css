@@ -1,0 +1,891 @@
+/* Modern Horror Theme - style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --bg-dark: #0e0e0e;
+    --bg-light: #1c1c1c;
+    --text-main: #e0e0e0;
+    --text-muted: #999;
+    --accent: #cb0404;
+    --accent-dark: #7a0000;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --glow: 0 0 12px rgba(203, 4, 4, 0.7);
+    --font-title: 'Creepster', cursive;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: var(--shadow);
+    }
+
+    50% {
+        box-shadow: var(--shadow), var(--glow);
+    }
+
+    100% {
+        box-shadow: var(--shadow);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-1px);
+    }
+
+    75% {
+        transform: translateX(1px);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    transition: all 0.4s ease-in-out; /* Slightly longer transition for smoother animations */
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll from subtle animations */
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+    a:hover {
+        color: var(--accent-dark);
+        text-shadow: var(--glow);
+        transform: scale(1.02); /* Subtle scale on hover */
+    }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Tambahan untuk responsivitas */
+    padding: 0 15px; /* Tambahkan padding horizontal default untuk ruang di tepi */
+}
+
+header {
+    background-color: var(--bg-light);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 18px var(--shadow); /* Stronger shadow */
+    animation: fadeIn 0.8s ease-out; /* Fade in header */
+}
+
+    header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* Padding ini akan di-override oleh .container di atasnya untuk mobile */
+        padding: 0 50px;
+        max-width: 100%;
+        width: 100%;
+        height: 60px;
+    }
+
+
+.logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+    .logo img {
+        height: 55px;
+        filter: drop-shadow(0 0 5px rgba(203, 4, 4, 0.5)); /* Subtle logo glow */
+    }
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+    .nav-links a {
+        font-weight: bold;
+        position: relative;
+        letter-spacing: 0.5px; /* Slight letter spacing */
+    }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--accent);
+            transition: width 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Springy underline effect */
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+.hamburger-menu {
+    display: none;
+}
+
+.hero-section {
+    background: url('Resources/Background.png') center/cover no-repeat;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For subtle background animations */
+}
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+        backdrop-filter: blur(5px); /* More blur */
+        z-index: 0;
+        animation: fadeIn 1s ease-out; /* Fade in overlay */
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1.2s ease-out; /* Fade in content */
+    padding: 0 20px; /* Tambahkan padding agar teks tidak terlalu menempel di tepi layar mobile */
+}
+
+    .hero-content h2 {
+        font-family: var(--font-title);
+        font-size: 4rem; /* Larger title */
+        color: var(--accent);
+        text-shadow: var(--glow);
+        animation: shake 5s infinite ease-in-out; /* Subtle shake for the title */
+    }
+
+    .hero-content p {
+        font-size: 1.3rem; /* Larger text */
+        margin: 1.5rem 0 2.5rem;
+        color: var(--text-main);
+        animation: fadeIn 1.5s ease-out;
+    }
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem; /* Larger buttons */
+    font-weight: bold;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin: 0 0.8rem;
+    letter-spacing: 1px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Springy button transition */
+}
+
+    .btn:hover {
+        background: var(--accent);
+        color: var(--bg-dark);
+        box-shadow: var(--glow);
+        transform: translateY(-3px) scale(1.05); /* Lift and slightly scale on hover */
+    }
+
+.primary-btn {
+    background: var(--accent);
+    color: var(--bg-dark);
+}
+
+    .primary-btn:hover {
+        background: var(--accent-dark);
+        color: white;
+    }
+
+.secondary-btn {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+    .secondary-btn:hover {
+        background: var(--accent);
+        color: white;
+    }
+
+.section-padded {
+    padding: 5rem 0; /* More padding for sections */
+    animation: fadeIn 1s ease-out; /* Fade in sections on scroll */
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.bg-dark {
+    background-color: var(--bg-dark);
+}
+
+.text-white {
+    color: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h2 {
+    font-family: var(--font-title);
+    font-size: 3rem; /* Consistent large titles */
+    color: var(--accent);
+    text-shadow: var(--glow);
+    margin-bottom: 2.5rem;
+    animation: shake 4s infinite alternate ease-in-out; /* Subtle shake for section titles */
+}
+
+.content-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem; /* More space between columns */
+    margin-top: 2rem;
+    align-items: center; /* Align items for better layout */
+}
+
+.column-text, .column-image {
+    flex: 1 1 350px; /* Slightly larger base for columns */
+}
+
+    .column-image img {
+        width: 100%;
+        max-width: 100%; /* Pastikan gambar tidak melebihi lebar container */
+        height: auto; /* Jaga rasio aspek */
+        border-radius: 8px;
+        box-shadow: 0 0 20px var(--shadow); /* Stronger image shadow */
+        border: 2px solid var(--accent-dark); /* Border around images */
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .column-image img:hover {
+            transform: scale(1.02); /* Slight zoom on image hover */
+            box-shadow: 0 0 25px var(--glow); /* Glow on image hover */
+        }
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger min width for features */
+    gap: 2.5rem; /* More gap */
+}
+
+.feature-item {
+    background: var(--bg-light);
+    padding: 2.5rem; /* More padding */
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--shadow);
+    border: 1px solid var(--accent-dark); /* Subtle border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .feature-item:hover {
+        transform: translateY(-5px); /* Lift on hover */
+        box-shadow: 0 5px 20px var(--glow); /* Stronger glow on hover */
+    }
+
+    .feature-item h3 {
+        color: var(--accent);
+        font-size: 1.8rem; /* Larger feature titles */
+        margin-bottom: 1rem;
+        animation: shake 3s infinite ease-in-out; /* Subtle shake for feature titles */
+    }
+
+    .feature-item p {
+        color: var(--text-muted);
+    }
+
+.media-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly larger min width for media */
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+    .media-gallery img {
+        width: 100%;
+        max-width: 100%; /* Pastikan gambar tidak melebihi lebar container */
+        height: 220px; /* Slightly taller images */
+        object-fit: cover;
+        border-radius: 6px;
+        box-shadow: 0 0 15px var(--shadow);
+        border: 1px solid var(--accent-dark);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .media-gallery img:hover {
+            transform: scale(1.03); /* Zoom on hover */
+            box-shadow: 0 0 20px var(--glow); /* Glow on hover */
+        }
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Rasio aspek 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 20px var(--shadow);
+    border: 2px solid var(--accent); /* Accent border for video */
+}
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+.download-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 3rem 0;
+    vertical-align: middle;
+}
+
+.download-btn {
+    padding: 1rem 2.5rem; /* Larger download buttons */
+    background: var(--accent);
+    color: var(--bg-dark);
+    border-color: var(--accent);
+    animation: pulseGlow 4s infinite ease-in-out; /* Pulsating glow for download buttons */
+}
+
+    .download-btn:hover {
+        background: var(--accent-dark);
+        color: white;
+        transform: translateY(-5px) scale(1.07); /* Lift and scale more on hover */
+        box-shadow: 0 5px 25px var(--glow); /* Stronger glow */
+    }
+
+    .download-btn img {
+        height: 28px; /* Larger icons */
+        margin-right: 12px;
+        filter: brightness(0) invert(1); /* Ensure icons are white */
+        vertical-align: middle; /* Tambahkan baris ini */
+    }
+
+.requirements {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.specs-grid {
+    display: flex;
+    gap: 3rem; /* More space */
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+}
+
+.spec-column {
+    flex: 1 1 320px; /* Slightly wider */
+    background: var(--bg-light);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--shadow);
+    border: 1px solid var(--accent-dark);
+}
+
+    .spec-column h3 {
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+        font-size: 1.7rem;
+    }
+
+    .spec-column ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .spec-column li {
+        margin-bottom: 0.8rem;
+        line-height: 1.6;
+    }
+
+/* Pastikan h2 selalu rata tengah di mana pun ia digunakan */
+h2 {
+    font-family: var(--font-title);
+    font-size: 3rem; /* Consistent large titles */
+    color: var(--accent);
+    text-shadow: var(--glow);
+    margin-bottom: 2rem;
+    animation: shake 4s infinite alternate ease-in-out; /* Subtle shake for section titles */
+    text-align: center; /* Tambahkan baris ini untuk membuat h2 rata tengah */
+}
+
+/* Selaraskan semua konten teks di dalam container bagian kontak ke tengah */
+#contact .container {
+    text-align: center; /* Tambahkan baris ini */
+}
+
+.small-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* More space */
+    max-width: 600px;
+    margin: 3rem auto 0;
+}
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 1rem; /* More padding */
+        border: 1px solid var(--accent-dark);
+        background: var(--bg-dark);
+        color: var(--text-main);
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 8px rgba(203, 4, 4, 0.5); /* Focus glow */
+        }
+
+    .contact-form textarea {
+        resize: vertical;
+        min-height: 120px; /* Taller textarea */
+    }
+
+    .contact-form .primary-btn {
+        align-self: flex-start; /* Align button to start */
+        margin-top: 1rem;
+    }
+
+
+footer {
+    text-align: center;
+    background: var(--bg-light);
+    color: var(--text-muted);
+    padding: 2.5rem 0; /* More padding */
+    border-top: 1px solid var(--accent-dark);
+}
+
+    footer .social-links {
+        margin-top: 1.5rem;
+    }
+
+        footer .social-links img {
+            height: 32px; /* Slightly larger icons */
+            margin: 0 12px;
+            filter: grayscale(100%) brightness(1.6); /* Lighter grayscale */
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+            footer .social-links img:hover {
+                filter: none; /* Full color on hover */
+                transform: scale(1.2); /* More zoom on hover */
+            }
+
+/* Modal styles with animations */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95); /* Darker, more opaque background */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+    .modal.active {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+.modal-content {
+    background: var(--bg-light);
+    padding: 3rem; /* More padding */
+    border-radius: 8px;
+    text-align: center;
+    color: var(--text-main);
+    box-shadow: 0 0 30px var(--glow); /* Stronger glow for modal */
+    border: 2px solid var(--accent); /* Accent border */
+    transform: scale(0.9); /* Start slightly smaller */
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease; /* Springy entrance */
+    max-width: 90%; /* Pastikan modal tidak terlalu lebar di mobile */
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.modal-content h2 {
+    color: var(--accent);
+    font-size: 2.5rem; /* Larger modal title */
+    margin-bottom: 1.5rem;
+}
+
+.modal-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem; /* Larger close button */
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+    .close-button:hover {
+        color: var(--accent);
+        transform: rotate(90deg); /* Rotate close button on hover */
+    }
+
+.close-modal-btn {
+    margin-top: 1.5rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header .container {
+        padding: 0 15px; /* Adjust header padding for smaller screens */
+    }
+
+    .logo img {
+        height: 45px; /* Smaller logo on mobile */
+    }
+
+    .hamburger-menu {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        position: relative;
+        z-index: 1100;
+    }
+
+        .hamburger-menu .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-main);
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger-menu.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger-menu.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+    .nav-links {
+        flex-direction: column;
+        position: fixed; /* Ubah menjadi fixed agar tidak scroll bersama konten */
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--bg-light);
+        padding: 8rem 2rem 2rem;
+        box-shadow: -4px 0 15px var(--shadow);
+        transition: right 0.3s ease-in-out;
+        justify-content: flex-start;
+        overflow-y: auto; /* Tambahkan scroll jika konten menu terlalu panjang */
+    }
+
+        .nav-links.active {
+            right: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-links a {
+            font-size: 1.4rem;
+            color: var(--text-main);
+        }
+
+    /* Hero Section */
+    .hero-section {
+        height: 60vh; /* Mengurangi tinggi hero section di mobile */
+        background-position: 70% center; /* Sesuaikan posisi background agar lebih baik di mobile */
+    }
+
+    .hero-content h2 {
+        font-size: 2.5rem; /* Ukuran font lebih kecil untuk judul hero */
+    }
+
+    .hero-content p {
+        font-size: 0.95rem; /* Ukuran font lebih kecil untuk paragraf hero */
+    }
+
+    .btn {
+        padding: 0.7rem 1.5rem; /* Ukuran tombol lebih kecil */
+        font-size: 0.9rem;
+        margin: 0.5rem; /* Jarak antar tombol */
+    }
+
+    /* General Section Padding & Font Sizes */
+    .section-padded {
+        padding: 3rem 0; /* Kurangi padding section */
+    }
+
+    h2 {
+        font-size: 2rem; /* Ukuran font lebih kecil untuk judul section */
+        margin-bottom: 1.5rem;
+    }
+
+    .content-columns {
+        flex-direction: column;
+        gap: 2rem; /* Kurangi gap */
+    }
+
+    .column-text, .column-image {
+        padding: 0 15px; /* Tambahkan padding di dalam kolom agar teks tidak menempel */
+    }
+
+    /* Feature Grid */
+    .features-grid {
+        grid-template-columns: 1fr; /* Satu kolom untuk fitur */
+        gap: 1.5rem;
+    }
+
+    .feature-item {
+        padding: 1.5rem; /* Kurangi padding fitur item */
+    }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+        }
+
+    /* Media Gallery */
+    .media-gallery {
+        grid-template-columns: 1fr; /* Satu kolom untuk galeri media */
+        gap: 1rem;
+    }
+
+        .media-gallery img {
+            height: 180px; /* Kurangi tinggi gambar galeri */
+        }
+
+    /* Download Section */
+    .download-options {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .download-btn {
+        width: 80%; /* Tombol unduh lebih lebar */
+        max-width: 300px;
+    }
+
+    /* Specs Grid */
+    .specs-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .spec-column {
+        padding: 2rem 1.5rem; /* Kurangi padding kolom spesifikasi */
+    }
+
+        .spec-column h3 {
+            font-size: 1.5rem;
+        }
+
+    /* Contact Form */
+    .contact-form {
+        padding: 0 15px; /* Tambahkan padding di form kontak */
+    }
+
+    /* Footer */
+    footer {
+        padding: 1.5rem 0; /* Kurangi padding footer */
+    }
+
+        footer .social-links img {
+            height: 28px; /* Ukuran ikon sosial lebih kecil */
+        }
+
+    /* Modal */
+    .modal-content {
+        padding: 2rem 1rem; /* Kurangi padding modal */
+        margin: 0 15px; /* Margin horizontal agar ada ruang di tepi */
+    }
+
+        .modal-content h2 {
+            font-size: 2rem; /* Ukuran font modal title lebih kecil */
+        }
+
+        .modal-content p {
+            font-size: 0.95rem; /* Ukuran font modal text lebih kecil */
+        }
+}
+
+/* Media Query for even smaller screens (e.g., iPhone SE) */
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.85rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .download-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+        .download-btn img {
+            height: 24px;
+            margin-right: 8px;
+        }
+
+    .feature-item h3, .spec-column h3 {
+        font-size: 1.3rem;
+    }
+
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+
+    /* --- Styling untuk Halaman Terima Kasih --- */
+    .thank-you-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+        .thank-you-body main {
+            flex-grow: 1; /* Pastikan main mengisi ruang yang tersisa */
+            display: flex;
+            align-items: center; /* Pusatkan konten secara vertikal */
+            justify-content: center; /* Pusatkan konten secara horizontal */
+        }
+
+    #thank-you-section {
+        padding: 8rem 0; /* Sesuaikan padding agar terlihat bagus */
+        background-color: var(--bg-dark); /* Gunakan warna latar belakang gelap */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .thank-you-content {
+        background: var(--bg-light);
+        padding: 3rem;
+        border-radius: 8px;
+        box-shadow: 0 0 30px var(--shadow), var(--glow); /* Efek bayangan dan glow */
+        border: 2px solid var(--accent);
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+        animation: fadeIn 1s ease-out; /* Animasi fade in */
+    }
+
+        .thank-you-content h2 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--accent);
+            text-shadow: var(--glow);
+            margin-bottom: 1.5rem;
+            animation: shake 4s infinite alternate ease-in-out; /* Animasi shake */
+        }
+
+        .thank-you-content p {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+    /* Media Queries untuk halaman terima kasih */
+    @media (max-width: 768px) {
+        .thank-you-content {
+            padding: 2rem 1rem;
+        }
+
+            .thank-you-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .thank-you-content p {
+                font-size: 1rem;
+            }
+    }
+
+    @media (max-width: 480px) {
+        .thank-you-content h2 {
+            font-size: 2rem;
+        }
+
+        .thank-you-content p {
+            font-size: 0.9rem;
+        }
+    }
+}
