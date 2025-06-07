@@ -812,4 +812,80 @@ footer {
     .modal-content h2 {
         font-size: 1.8rem;
     }
+
+    /* --- Styling untuk Halaman Terima Kasih --- */
+    .thank-you-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+        .thank-you-body main {
+            flex-grow: 1; /* Pastikan main mengisi ruang yang tersisa */
+            display: flex;
+            align-items: center; /* Pusatkan konten secara vertikal */
+            justify-content: center; /* Pusatkan konten secara horizontal */
+        }
+
+    #thank-you-section {
+        padding: 8rem 0; /* Sesuaikan padding agar terlihat bagus */
+        background-color: var(--bg-dark); /* Gunakan warna latar belakang gelap */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .thank-you-content {
+        background: var(--bg-light);
+        padding: 3rem;
+        border-radius: 8px;
+        box-shadow: 0 0 30px var(--shadow), var(--glow); /* Efek bayangan dan glow */
+        border: 2px solid var(--accent);
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+        animation: fadeIn 1s ease-out; /* Animasi fade in */
+    }
+
+        .thank-you-content h2 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--accent);
+            text-shadow: var(--glow);
+            margin-bottom: 1.5rem;
+            animation: shake 4s infinite alternate ease-in-out; /* Animasi shake */
+        }
+
+        .thank-you-content p {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+    /* Media Queries untuk halaman terima kasih */
+    @media (max-width: 768px) {
+        .thank-you-content {
+            padding: 2rem 1rem;
+        }
+
+            .thank-you-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .thank-you-content p {
+                font-size: 1rem;
+            }
+    }
+
+    @media (max-width: 480px) {
+        .thank-you-content h2 {
+            font-size: 2rem;
+        }
+
+        .thank-you-content p {
+            font-size: 0.9rem;
+        }
+    }
 }
