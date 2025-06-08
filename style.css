@@ -529,7 +529,8 @@ footer {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.95); /* Darker, more opaque background */
+    background: rgba(0, 0, 0, 0.5); /* Darker, more opaque background */
+    backdrop-filter: blur(8px); /* Tambahkan efek blur */
     justify-content: center;
     align-items: center;
     z-index: 2000;
